@@ -12,8 +12,10 @@ xterm -T 'R' -e perl ~/.vim/ftplugin/funnel.pl ~/.r-pipe R&
 
 The script opens a second xterm with a running R interpreter. Before this 
 works, you have to have a ~/.vim/ftplugin directory with the bundled 
-ftplugin/funnel.pl script in it wich requires some perl libraries (see the
-comments at the beginning of funnel.pl)
+ftplugin/funnel.pl script in it. 
+
+funnel.pl requires some perl libraries (see the comments at the beginning of
+funnel.pl)
 
 Then open an R script file. If you add the lines
 
@@ -32,3 +34,6 @@ input.
 Finally, if you want to write R packages with vim, you will find the syntax
 file syntax/rd.vim helpful, although it is by far not complete and I don't really
 understand vim syntax files very well.
+
+Note that the newly opened xterm will not close after quitting R. You will have 
+to close the window manually.
