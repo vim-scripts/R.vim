@@ -1,0 +1,34 @@
+For working with vim and octave it is convenient to open a fresh xterm on a
+fresh virtual desktop, covering the left half of the screen, and type
+"Rlistening" in it. This will call the following little script
+~/bin/Rlistening:
+
+-----------------cut here, save as ~/bin/Rlistening and make executable-----
+#!/bin/bash
+xterm -T 'R' -e perl ~/.vim/ftplugin/funnel.pl ~/.r-pipe R&
+-----------------end cut----------------------------------------------------
+
+~/bin has to be in your path for this to work.
+
+The script opens a second xterm with a running R interpreter. Before this 
+works, you have to have a ~/.vim/ftplugin directory with the bundled 
+ftplugin/funnel.pl script in it wich requires some perl libraries (see the
+comments at the beginning of funnel.pl)
+
+Then open an R script file. If you add the lines
+
+au BufNewFile,BufRead *.R     setf R
+au BufNewFile,BufRead *.R     set syntax=r
+
+to your ~.vim/filetype.vim file (or create one with only these lines)
+then the vimscript R.vim will be activated upon opening any file with 
+a filename matching *.R. The commands available at this point are elucidated
+in R.vim.
+
+I also included an ftplugin for *.Rnw files (ftplugin/Rnw.vim). These can be
+used with Sweave in order to create nice Latex documents from mixed latex and R
+input. 
+
+Finally, if you want to write R packages with vim, you will find the syntax
+file syntax/rd.vim helpful, although it is by far not complete and I don't really
+understand vim syntax files very well.

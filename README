@@ -1,0 +1,43 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1048
+
+Send R code from a VIM buffer to R on Unix type systems using funnel.pl from vimscript #221. Contains
+
+README.R_with_vim
+ftplugin/r.vim
+ftplugin/rnoweb.vim
+ftplugin/funnel.pl
+syntax/rhelp.vim
+syntax/rnoweb.vim
+Makefile.rnoweb
+
+Fernando Henrique Ferraz Pereira da Rosa is now a coauthor of this plugin (starting from version 0.03). He helped me fixing a bug and started the syntax file for mixed highlighting of Latex and R syntax (syntax/rnoweb.vim).
+
+I set up a small project page for this plugin, featuring a screenshot:
+
+http://www.uft.uni-bremen.de/chemie/ranke/?page=vim_R_linux
+
+You can browse the subversion repository where these files are at home: http://kriemhild.uft.uni-bremen.de/viewcvs/?root=vim
+
+Alternatives for Mac Os X include vimscript #1741 and vimscript #2104.
+
+Under Windows, I am now using a quite simple solution, consisting of the installation of the rcom package for R which requires statconnDCOM from http://rcom.univie.ac.at and ActiveState Perl in the PATH (watch out if you use R tools, because GNU perl does not have the DCOM interface, so ActiveState perl needs to be first in the path).
+My ftplugin/r.vim under Windows:
+
+perl << EOF
+sub rsourceclipboard
+{
+    use Win32::OLE;
+    my $R = Win32::OLE->GetActiveObject('RCOMServerLib.StatConnector')
+          || Win32::OLE->new('RCOMServerLib.StatConnector');
+    $R->Evaluate("source('clipboard', echo=TRUE)");
+    $R->Close;
+}
+EOF
+
+vnoremap <buffer> r "*y:perl rsourceclipboard<CR>
+
+This means that the visual selection is pasted to the clipboard and the clipboard content is sourced by R when the key "r" is pressed in visual mode.
+
+
+
+
