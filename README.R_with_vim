@@ -1,39 +1,52 @@
-For working with vim and octave it is convenient to open a fresh xterm on a
-fresh virtual desktop, covering the left half of the screen, and type
-"Rlistening" in it. This will call the following little script
-~/bin/Rlistening:
+SVN: $Id: README.R_with_vim 29 2005-08-05 12:40:52Z ranke $
+Last Change: 2005 Aug 05
 
------------------cut here, save as ~/bin/Rlistening and make executable-----
-#!/bin/bash
-xterm -T 'R' -e perl ~/.vim/ftplugin/funnel.pl ~/.r-pipe R&
------------------end cut----------------------------------------------------
+-----
+Preamble:
+As an alternative to this plugin on www.vim.org you can also install my Debian
+package if you are using the Debian distribution from
+	
+	http://www.uft.uni-bremen.de/chemie/ranke/debs
+-----
 
-~/bin has to be in your path for this to work.
+For working with vim and R it is convenient to open a fresh xterm on a
+fresh virtual desktop, covering the left half of the screen, and start vim,
+check if the filetype is set correctly (:set ft), set it (e.g. with :set ft=r)
+and press <F2>. This will open a second xterm listening to an R interpreter.
 
-The script opens a second xterm with a running R interpreter. Before this 
-works, you have to have a ~/.vim/ftplugin directory with the bundled 
-ftplugin/funnel.pl script in it. 
+
+This requires the installation of a perl script, ftplugin/funnel.pl, and a tiny
+bash script, ftplugin/R-managed. If you are the only one working with the
+plugin on your machine, just copy ftplugin/R-managed do ~/bin and make it
+executable. ~/bin has to be in your $PATH of course.
 
 funnel.pl requires some perl libraries (see the comments at the beginning of
-funnel.pl)
+funnel.pl). On a debian installation, it is enough to do an
+
+	apt-get install libio-pty-perl libterm-readline-gnu-perl
 
 Then open an R script file. If you add the lines
 
-au BufNewFile,BufRead *.R     setf R
-au BufNewFile,BufRead *.R     set syntax=r
+	au BufNewFile,BufRead *.R     setf r
+	au BufNewFile,BufRead *.R     set syntax=r
 
-to your ~.vim/filetype.vim file (or create one with only these lines)
-then the vimscript R.vim will be activated upon opening any file with 
-a filename matching *.R. The commands available at this point are elucidated
-in R.vim.
+to your ~.vim/filetype.vim file (or create one with only these lines) then the
+vimscript r.vim will be activated upon opening any file with a filename
+matching *.R. The commands available at this point are elucidated in
+ftplugin/r.vim.
 
-I also included an ftplugin for *.Rnw files (ftplugin/Rnw.vim). These can be
+I also included an ftplugin for *.Rnw files (ftplugin/rnw.vim). These can be
 used with Sweave in order to create nice Latex documents from mixed latex and R
 input. 
 
-Finally, if you want to write R packages with vim, you will find the syntax
-file syntax/rd.vim helpful, although it is by far not complete and I don't really
-understand vim syntax files very well.
+Mixed code highlighting (tip at http://www.ime.usp.br/~feferraz/en/sweavevim.html)
+is also possible, if you add
 
-Note that the newly opened xterm will not close after quitting R. You will have 
-to close the window manually.
+	au! BufRead,BufNewFile *.Rnw       setf rnw
+
+to your filetype.vim file. and put the file after/syntax/rnw.vim into
+~/.vim/after/syntax/rnw.vim. 
+
+Finally, if you want to write R packages with vim, you might find the syntax
+file syntax/rd.vim helpful, although it is by far not complete and I don't
+really understand vim syntax files very well.

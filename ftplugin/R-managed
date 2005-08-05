@@ -1,0 +1,15 @@
+#!/bin/bash
+# This small script is to be used in a terminal that is controlled by 
+# the funnel.pl script. It calls a command that it is given as command line
+# argument. After it is finished, it tells the user that he has to close
+# the terminal manually and how he can do that.
+# 
+# Author: Fernando Henrique Ferraz Pereira da Rosa <feferraz@ime.usp.br>
+# Modifications by Johannes Ranke <jranke@uni-bremen.de>
+# 
+
+$*
+echo -e "\n\n"
+echo "R process finished."
+echo "Press Control+D to close this Window."
+echo -e "\n\n"

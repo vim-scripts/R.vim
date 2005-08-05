@@ -1,33 +1,33 @@
-" [R.vim] ftplugin for R
+" ftplugin for R files
 "
 " Author: Iago Mosqueira <i.mosqueira@ic.ac.uk>
-" Changes by Johannes Ranke <jranke@uni-bremen.de>
-" Last change: 28 Jul 2004 
-"
+" Author: Johannes Ranke <jranke@uni-bremen.de>
+" Author: Fernando Henrique Ferraz Pereira da Rosa <feferraz@ime.usp.br>
+" Maintainer: Johannes Ranke <jranke@uni-bremen.de>
+" Last Change: 2005 Aug 05
+" SVN: $Id: r.vim 28 2005-08-05 12:29:33Z ranke $
 "
 " Code written in vim is sent to R through a perl pipe
 " [funnel.pl, by Larry Clapp <vim@theclapp.org>], as individual lines,
 " blocks, or the whole file.
+
+" Press <F2> to open a new xterm with a new R interpreter listening
+" to its standard input (you can type R commands into the xterm)
+" as well as to code pasted from within vim.
 "
-" Usage:
-"
-" Start R with:
-"       xterm -T 'R' -e perl ~/.vim/ftplugin/funnel.pl ~/.r-pipe R&
-"
-" Add to filetype.vim:
-"   au BufNewFile,BufRead *.R     setf r
-"   au BufNewFile,BufRead *.R     set syntax=r
+" After selecting a visual block, 'r' sends it to the R interpreter
 "
 " In insert mode, <M-Enter> sends the active line to R and moves to the next
 " line (write and process mode).
 "
 " Maps:
+"       <F2>		Start a listening R interpreter in new xterm
+"       <F3>		Start a listening R-devel interpreter in new xterm
+"       <F4>		Start a listening R --vanilla interpreter in new xterm
 "       <F5>        Run current file
 "       <F9>        Run line under cursor
 "       r	        Run visual block
 "       <M-Enter>   Write and process
-
-
 
 " Only do this when not yet done for this buffer
 if exists("b:did_ftplugin")
@@ -44,6 +44,15 @@ setl backupskip=.*pipe
 set expandtab
 set tabstop=4
 set shiftwidth=4
+
+"Start a listening R interpreter in new xterm
+noremap <buffer> <F2> :!xterm -T 'R' -e funnel.pl ~/.r-pipe R-managed R&<CR><CR>
+
+"Start a listening R-devel interpreter in new xterm
+noremap <buffer> <F3> :!xterm -T 'R' -e funnel.pl ~/.r-pipe R-managed R-devel&<CR><CR>
+
+"Start a listening R --vanilla interpreter in new xterm
+noremap <buffer> <F4> :!xterm -T 'R' -e funnel.pl ~/.r-pipe R-managed R --vanilla&<CR><CR>
 
 "send line under cursor to R
 noremap <buffer> <F9> :execute line(".") 'w >> ~/.r-pipe'<CR>

@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:    R Help File
 " Maintainer:  Johannes Ranke <jranke@uni-bremen.de>
-" Last Change: Feb 20, 2004
+" Last Change: 2005 Aug 05
 " Version:     0.1
 "
 " Notes: First try. I don't really understand the HiLink commands too well
