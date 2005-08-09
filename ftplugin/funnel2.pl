@@ -10,6 +10,10 @@
 # before.
 #
 # $Header: /home/lmc/lisp/briefcase/VIlisp/RCS/funnel.pl,v 1.3 2002/05/01 00:35:28 lmc Exp $
+#
+# Adapted by Johannes Ranke <jranke@uni-bremen.de>
+# Last Change: 2005 Aug 09
+# SVN: $Id: funnel2.pl 32 2005-08-09 06:14:56Z ranke $
 
 use IO::Pty;                    # This appears to require 5.004
 use Term::ReadLine;
@@ -141,6 +145,11 @@ sub check_tty_data
 
 	    print $l;
 	    $tty_data = $l;
+		
+		if ($tty_data =~ /Interpreter has finished. Exiting. Goodbye./)
+		{
+			$master->close();
+		}
 
 	    if ($tty_data !~ /[\r\n]$/)
 	    {
