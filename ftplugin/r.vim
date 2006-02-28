@@ -4,8 +4,8 @@
 " Author: Johannes Ranke <jranke@uni-bremen.de>
 " Author: Fernando Henrique Ferraz Pereira da Rosa <feferraz@ime.usp.br>
 " Maintainer: Johannes Ranke <jranke@uni-bremen.de>
-" Last Change: 2005 Aug 09
-" SVN: $Id: r.vim 33 2005-08-09 06:44:51Z ranke $
+" Last Change: 2006 Feb 28
+" SVN: $Id: r.vim 37 2006-02-28 22:36:51Z ranke $
 "
 " Code written in vim is sent to R through a perl pipe
 " [funnel.pl, by Larry Clapp <vim@theclapp.org>], as individual lines,
@@ -46,13 +46,13 @@ set tabstop=4
 set shiftwidth=4
 
 "Start a listening R interpreter in new xterm
-noremap <buffer> <F2> :!xterm -T 'R' -e funnel2.pl ~/.r-pipe "R && echo -e 'Interpreter has finished. Exiting. Goodbye.\n'"&<CR><CR>
+noremap <buffer> <F2> :!xterm -T 'R' -e funnel.pl ~/.r-pipe "R && echo -e 'Interpreter has finished. Exiting. Goodbye.\n'"&<CR><CR>
 
 "Start a listening R-devel interpreter in new xterm
-noremap <buffer> <F3> :!xterm -T 'R' -e funnel2.pl ~/.r-pipe "R-devel && echo 'Interpreter has finished. Exiting. Goodbye.'"&<CR><CR>
+noremap <buffer> <F3> :!xterm -T 'R' -e funnel.pl ~/.r-pipe "R-devel && echo 'Interpreter has finished. Exiting. Goodbye.'"&<CR><CR>
 
 "Start a listening R --vanilla interpreter in new xterm
-noremap <buffer> <F4> :!xterm -T 'R' -e funnel2.pl ~/.r-pipe "R -vanilla && echo 'Interpreter has finished. Exiting. Goodbye.'"&<CR><CR>
+noremap <buffer> <F4> :!xterm -T 'R' -e funnel.pl ~/.r-pipe "R -vanilla && echo 'Interpreter has finished. Exiting. Goodbye.'"&<CR><CR>
 
 "send line under cursor to R
 noremap <buffer> <F9> :execute line(".") 'w >> ~/.r-pipe'<CR>
