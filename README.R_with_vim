@@ -1,5 +1,5 @@
-SVN: $Id: README.R_with_vim 37 2006-02-28 22:36:51Z ranke $
-Last Change: 2006 Feb 28
+SVN: $Id: README.R_with_vim 51 2006-04-18 14:06:16Z ranke $
+Last Change: 2006 Apr 18
 
 For working with vim and R it is convenient to open a fresh xterm on a
 fresh virtual desktop, covering the left half of the screen, and start vim,
@@ -46,14 +46,9 @@ vimscript r.vim will be activated upon opening any file with a filename
 matching *.R. The whole set of commands available at this point is elucidated
 in ftplugin/r.vim.
 
-Mixed code highlighting for Sweave files (tip at
-http://www.ime.usp.br/~feferraz/en/sweavevim.html) is also possible, if you add
+I am also including my syntax files for R help files and R noweb files (Sweave files)
+as well as a Makefile for processing R noweb files from within vim with :make. The 
+syntax files are part of vim starting from version 7.
 
-	au! BufRead,BufNewFile *.Rnw       setf rnw
-
-to your filetype.vim file. and put the file after/syntax/rnw.vim into
-~/.vim/after/syntax/rnw.vim. 
-
-Finally, if you want to write R packages with vim, you might find the syntax
-file syntax/rd.vim helpful, although it is by far not complete and I don't
-really understand vim syntax files very well.
+I have one report of the funnel.pl not working on Mac OS X with the default perl on this
+OS. If anybody gets this to work, please drop me a line.
