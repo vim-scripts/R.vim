@@ -4,8 +4,8 @@
 " Author: Johannes Ranke <jranke@uni-bremen.de>
 " Author: Fernando Henrique Ferraz Pereira da Rosa <feferraz@ime.usp.br>
 " Maintainer: Johannes Ranke <jranke@uni-bremen.de>
-" Last Change: 2006 Feb 28
-" SVN: $Id: r.vim 37 2006-02-28 22:36:51Z ranke $
+" Last Change: 2006 Mai 24
+" SVN: $Id: r.vim 62 2006-05-24 08:30:59Z ranke $
 "
 " Code written in vim is sent to R through a perl pipe
 " [funnel.pl, by Larry Clapp <vim@theclapp.org>], as individual lines,
@@ -42,7 +42,7 @@ setl backupskip=.*pipe
 
 "set r-friendly tabbing
 set expandtab
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
 
 "Start a listening R interpreter in new xterm

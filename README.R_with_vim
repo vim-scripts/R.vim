@@ -1,5 +1,5 @@
-SVN: $Id: README.R_with_vim 51 2006-04-18 14:06:16Z ranke $
-Last Change: 2006 Apr 18
+SVN: $Id: README.R_with_vim 62 2006-05-24 08:30:59Z ranke $
+Last Change: 2006 Mai 24
 
 For working with vim and R it is convenient to open a fresh xterm on a
 fresh virtual desktop, covering the left half of the screen, and start vim,
@@ -7,6 +7,13 @@ check if the filetype is set correctly (:set ft), set it if necessary (e.g.
 with :set ft=r) and press <F2>. This will open a second xterm listening to an R
 interpreter.  You can then send visually highlighted code from vim to R with
 the vmap "r".
+
+Caution: If there are adjacent tabs in the source code (can be made visible
+with :set list, then they show up as ^I^I), then your R console will list 
+the contents of your working directory in the middle of interpreting your
+code and most likely get confused. I don't recommend using tabs anyway (use 
+the vim option expandtab, as set in r.vim). A workaround for existing code
+is to execute it with the R command source().
 
 -----
 
