@@ -4,8 +4,8 @@
 " Author: Johannes Ranke <jranke@uni-bremen.de>
 " Author: Fernando Henrique Ferraz Pereira da Rosa <feferraz@ime.usp.br>
 " Maintainer: Johannes Ranke <jranke@uni-bremen.de>
-" Last Change: 2006 Mai 24
-" SVN: $Id: r.vim 62 2006-05-24 08:30:59Z ranke $
+" Last Change: 2007 Nov 21
+" SVN: $Id: r.vim 75 2007-11-21 13:34:02Z ranke $
 "
 " Code written in vim is sent to R through a perl pipe
 " [funnel.pl, by Larry Clapp <vim@theclapp.org>], as individual lines,
@@ -37,32 +37,33 @@ endif
 " Don't load another plugin for this buffer
 let b:did_ftplugin = 1
 
-"disable backup for .r-pipe
+" Disable backup for .r-pipe
 setl backupskip=.*pipe
 
-"set r-friendly tabbing
+" Set tabstop so it is compatible with the emacs edited code. Personally, I
+" prefer shiftwidth=2, which I have in my .vimrc anyway
 set expandtab
-set tabstop=8
 set shiftwidth=4
+set tabstop=8
 
-"Start a listening R interpreter in new xterm
+" Start a listening R interpreter in new xterm
 noremap <buffer> <F2> :!xterm -T 'R' -e funnel.pl ~/.r-pipe "R && echo -e 'Interpreter has finished. Exiting. Goodbye.\n'"&<CR><CR>
 
-"Start a listening R-devel interpreter in new xterm
+" Start a listening R-devel interpreter in new xterm
 noremap <buffer> <F3> :!xterm -T 'R' -e funnel.pl ~/.r-pipe "R-devel && echo 'Interpreter has finished. Exiting. Goodbye.'"&<CR><CR>
 
-"Start a listening R --vanilla interpreter in new xterm
+" Start a listening R --vanilla interpreter in new xterm
 noremap <buffer> <F4> :!xterm -T 'R' -e funnel.pl ~/.r-pipe "R -vanilla && echo 'Interpreter has finished. Exiting. Goodbye.'"&<CR><CR>
 
-"send line under cursor to R
+" Send line under cursor to R
 noremap <buffer> <F9> :execute line(".") 'w >> ~/.r-pipe'<CR>
 inoremap <buffer> <F9> <Esc> :execute line(".") 'w >> ~/.r-pipe'<CR>
 
-"send visual selected block to R
+" Send visual selected block to R
 vnoremap <buffer> r :w >> ~/.r-pipe<CR>
 
-"write and process mode (somehow mapping <C-Enter> does not work)
+" Write and process mode (somehow mapping <C-Enter> does not work)
 inoremap <M-Enter> <Esc>:execute line(".") 'w >> ~/.r-pipe'<CR>o
 
-"send current file to R
+" Send current file to R
 noremap <buffer> <F5> :execute '1 ,' line("$") 'w >> ~/.r-pipe' <CR><CR>

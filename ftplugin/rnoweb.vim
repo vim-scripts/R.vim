@@ -1,8 +1,8 @@
 " ftplugin for Sweave files containing both LaTeX and R code
 "
 " Maintainer: Johannes Ranke <jranke@uni-bremen.de>
-" Last Change: 2006 Mai 24
-" SVN: $Id: rnoweb.vim 62 2006-05-24 08:30:59Z ranke $
+" Last Change: 2007 Nov 21
+" SVN: $Id: rnoweb.vim 75 2007-11-21 13:34:02Z ranke $
 "
 " Usage:
 "
@@ -38,18 +38,22 @@ endif
 " Don't load another plugin for this buffer
 let b:did_ftplugin = 1
 
-"disable backup for .r-pipe
+" Disable backup for .r-pipe
 setl backupskip=.*pipe
 
-"Start a listening R interpreter in new xterm
+" Set R friendly tabbing
+set expandtab
+set shiftwidth=2
+
+" Start a listening R interpreter in new xterm
 noremap <buffer> <F2> :!xterm -T 'R' -e funnel.pl ~/.r-pipe "R && echo -e 'Interpreter has finished. Exiting. Goodbye.\n'"&<CR><CR>
 
-"send line under cursor to R
+" Send line under cursor to R
 noremap <buffer> <F9> :execute line(".") 'w >> ~/.r-pipe'<CR>
 inoremap <buffer> <F9> <Esc> :execute line(".") 'w >> ~/.r-pipe'<CR>
 
-"send visual selected block to R
+" Send visual selected block to R
 vnoremap <buffer> r :w >> ~/.r-pipe<CR>
 
-"write and process mode (somehow mapping <C-Enter> does not work)
+" Write and process mode (somehow mapping <C-Enter> does not work)
 inoremap <M-Enter> <Esc>:execute line(".") 'w >> ~/.r-pipe'<CR>o

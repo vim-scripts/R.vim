@@ -1,5 +1,5 @@
-SVN: $Id: README.R_with_vim 62 2006-05-24 08:30:59Z ranke $
-Last Change: 2006 Mai 24
+SVN: $Id: README.R_with_vim 79 2007-11-21 14:15:56Z ranke $
+Last Change: 2007 Nov 21
 
 For working with vim and R it is convenient to open a fresh xterm on a
 fresh virtual desktop, covering the left half of the screen, and start vim,
@@ -12,20 +12,25 @@ Caution: If there are adjacent tabs in the source code (can be made visible
 with :set list, then they show up as ^I^I), then your R console will list 
 the contents of your working directory in the middle of interpreting your
 code and most likely get confused. I don't recommend using tabs anyway (use 
-the vim option expandtab, as set in r.vim). A workaround for existing code
-is to execute it with the R command source().
+the vim option expandtab, as set in ftplugin/r.vim). A workaround for existing
+code is to execute it with the R command source().
 
 -----
 
 As an alternative to this plugin on www.vim.org you can also install my Debian
-package if you are using the Debian distribution:
+package if you are using the Debian distribution
 
 	$ su
 	$ echo "deb http://www.uft.uni-bremen.de/chemie/ranke/debs ./" >> /etc/apt/sources.list
 	$ apt-get update
 	$ apt-get install vim-r-plugin
-	
-and ignore the rest of this file.
+
+Note that you have to activate addons like this plugin since vim version
+7.1-022+1, July 2007. For system-wide activation, use
+
+	$ vim-addons -w install r-plugin
+
+(details in README.Debian). You can then ignore the rest of this file.
 
 -----
 
